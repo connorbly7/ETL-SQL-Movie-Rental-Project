@@ -16,7 +16,7 @@ Data
 - Each dataset has an id column which acts as the unique identifier (primary key in SQL) for each row of data
 
 ETL
-- Used Python in conjunction with NumPy and pandas to extract data from a csv file, transform and clean it, and load it into MySQL
+- Used Python in conjunction with NumPy, pandas, and SQLAlchemy to extract data from a csv file, transform and clean it, and load it into MySQL
 - During transformation, added additional columns to the data such as total_overdue_cost to improve datasets
 - Used a .env file to hide sensitive information
 
@@ -37,5 +37,6 @@ Technologies Used
 - Python
 - pandas
 - NumPy
+- SQLAlchemy
 - dotenv
 - SQL
