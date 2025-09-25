@@ -25,7 +25,7 @@ Analysis
 - Example query:
 Compute average spend per customer:
 
-SELECT ROUND(AVG(total_due), 2) AS avg_total_due_per_customer'''
+SELECT ROUND(AVG(total_due), 2) AS avg_total_due_per_customer```
 FROM (
     SELECT customer_id, 
     SUM(rental_fee * datediff(rentals.return_date, rentals.rental_date) + total_overdue_fee) AS total_due
