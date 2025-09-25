@@ -33,10 +33,25 @@ FROM (
     GROUP BY customer_id
 ) AS subquery;
 ```
+
+Setup
+  1. Clone repository and move it into workspace.
+  2. In a Python terminal, create and activate a virtual environment to run the ETL with required packages using the following commands:
+     python -m venv .venv
+     .venv\Scripts\Activate
+  3. Run the following command to download the required packages:
+     pip install -r requirements.txt
+  4. In MySQL, run the following command found at the top of the queries file to setup the movierentals database:
+     CREATE DATABASE IF NOT EXISTS movierental;
+  5. Run run_etl.py in the etl folder to run the ETL pipeline.
+  6. Make sure movierentals is the active schema in MySQL.
+  7. When you are finished, enter deactivate in the Python terminal to deactivate virtual environment.
+
 Technologies Used
 - Python
+- MySQL
 - pandas
 - NumPy
 - SQLAlchemy
+- mysql-connector-python
 - dotenv
-- SQL
