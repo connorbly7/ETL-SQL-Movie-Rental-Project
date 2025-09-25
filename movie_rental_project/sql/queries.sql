@@ -1,3 +1,4 @@
+CREATE DATABASE IF NOT EXISTS movierental;
 use movierental;
 
 -- 1. List all customers
