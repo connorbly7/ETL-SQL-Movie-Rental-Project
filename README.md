@@ -36,14 +36,14 @@ FROM (
 
 Setup
   1. Clone repository and move it into workspace.
-  2. In a Python terminal, create and activate a virtual environment to run the ETL with required packages using the following commands:
+  2. While in the main directory, create and activate a virtual environment to run the ETL with required packages using the following commands in the Python terminal:
 ```
      python -m venv .venv
      .venv\Scripts\Activate
 ```
-  3. Run the following command to download the required packages:
+  3. Still in main directory, un the following command to download the required packages:
 ```
-     pip install -r requirements.txt
+     pip install -r etl/requirements.txt
 ```
   4. Create a .env file in the movie_rental_project directory and enter your MySQL username and password inside. Format as following:
 ```
