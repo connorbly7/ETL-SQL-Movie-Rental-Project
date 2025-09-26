@@ -41,17 +41,22 @@ Setup
      python -m venv .venv
      .venv\Scripts\Activate
 ```
-  4. Run the following command to download the required packages:
+  3. Run the following command to download the required packages:
 ```
      pip install -r requirements.txt
 ```
-  6. In MySQL, run the following command found at the top of the queries file to setup the movierentals database:
+  4. Create a .env file in the movie_rental_project directory and enter your MySQL username and password inside. Format as following:
+```
+USERNAME = "enterusernamehere"
+PASSWORD = "enterpasswordhere"
+```
+  5. In MySQL, run the following command found at the top of the queries script to set up the movierentals database:
 ```
      CREATE DATABASE IF NOT EXISTS movierental;
 ```
-  8. Run run_etl.py in the etl folder to run the ETL pipeline.
-  9. Make sure movierentals is the active schema in MySQL.
-  10. When you are finished, enter deactivate in the Python terminal to deactivate virtual environment.
+  6. Run run_etl.py in the etl folder to run the ETL pipeline.
+  7. Make sure movierentals is the active schema in MySQL.
+  8. When you are finished, enter deactivate in the Python terminal to deactivate virtual environment.
 
 Technologies Used
 - Python
