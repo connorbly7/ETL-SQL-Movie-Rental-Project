@@ -18,7 +18,7 @@ def load_data(customers_data, employees_data, movies_data, rentals_data):
     """
     
     load_dotenv()
-    username = "root"
+    username = os.getenv("USERNAME")
     host = "localhost"
     port = 3306
     database = "movierental"
@@ -84,3 +84,4 @@ def load_data(customers_data, employees_data, movies_data, rentals_data):
     employees_data.to_sql("employees", con=engine, if_exists="append", index=False)
     movies_data.to_sql("movies", con=engine, if_exists="append", index=False)
     rentals_data.to_sql("rentals", con=engine, if_exists="append", index=False)
+
