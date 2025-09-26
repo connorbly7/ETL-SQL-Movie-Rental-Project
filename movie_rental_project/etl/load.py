@@ -17,13 +17,16 @@ def load_data(customers_data, employees_data, movies_data, rentals_data):
             rentals: Cleaned rental data
     """
     
-    load_dotenv()
+    load_dotenv(override=True)
     username = os.getenv("USERNAME")
     host = "localhost"
     port = 3306
     database = "movierental"
     password = os.getenv("PASSWORD")
 
+    print("Connecting as:", username, "@", host, "db:", database)
+    print()
+    
     engine = create_engine(f"mysql+mysqlconnector://{username}:{password}@{host}:{port}/{database}")
 
 
@@ -84,4 +87,5 @@ def load_data(customers_data, employees_data, movies_data, rentals_data):
     employees_data.to_sql("employees", con=engine, if_exists="append", index=False)
     movies_data.to_sql("movies", con=engine, if_exists="append", index=False)
     rentals_data.to_sql("rentals", con=engine, if_exists="append", index=False)
+
 
