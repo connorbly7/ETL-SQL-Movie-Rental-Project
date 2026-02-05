@@ -34,35 +34,54 @@ FROM (
 ) AS subquery;
 ```
 
+Prerequisites
+1. Docker Desktop
+2. Git
+3. Build and run containers
+
+'''
+docker compose up --build
+'''
+You should see the following printed out:
+
+Extract success
+Transform success
+Load success
+
+4. Open up a MySQL terminal in the command line to run queries
+
+'''
+docker exec -it movie_rental_project-db-1 mysql -umovierental_user -pmovierental_pass movierental
+'''
+
+5. Run sample queries
+
+Ex)
+
+Average spend per customer
+SELECT ROUND(AVG(total_due), 2) AS avg_total_due_per_customer
+FROM (
+    SELECT customer_id, 
+    SUM(rental_fee * datediff(rentals.return_date, rentals.rental_date) + total_overdue_fee) AS total_due
+    FROM rentals
+    GROUP BY customer_id
+) AS subquery;
+
+6. When finished, stop containers
+
+'''
+docker compose down -v
+'''
+
 Setup
-  1. Clone repository and move it into workspace.
-  2. While in the main directory, create and activate a virtual environment to run the ETL with required packages using the following commands in the Python terminal:
-```
-     python -m venv .venv
-     .venv\Scripts\Activate
-```
-  3. Still in main directory, un the following command to download the required packages:
-```
-     pip install -r etl/requirements.txt
-```
-  4. Create a .env file in the movie_rental_project directory and enter your MySQL username and password inside. Format as following:
-```
-USERNAME = "enterusernamehere"
-PASSWORD = "enterpasswordhere"
-```
-  5. In MySQL, run the following command found at the top of the queries script to set up the movierentals database:
-```
-     CREATE DATABASE IF NOT EXISTS movierental;
-```
-  6. Run run_etl.py in the etl folder to run the ETL pipeline.
-  7. Make sure movierentals is the active schema in MySQL.
-  8. When you are finished, enter deactivate in the Python terminal to deactivate virtual environment.
+  1. Clone repository
+  2. 
 
 Technologies Used
 - Python
 - MySQL
+- Docker
 - pandas
 - NumPy
 - SQLAlchemy
 - mysql-connector-python
-- dotenv
