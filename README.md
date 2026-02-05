@@ -37,28 +37,32 @@ FROM (
 Prerequisites
 1. Docker Desktop
 2. Git
-3. Build and run containers
 
-'''
+Setup
+1.Clone repository
+2. Build and run containers
+
+```
 docker compose up --build
-'''
+```
 You should see the following printed out:
 
 Extract success
 Transform success
 Load success
 
-4. Open up a MySQL terminal in the command line to run queries
+3. Open up a MySQL terminal in the command line to run queries
 
-'''
+```
 docker exec -it movie_rental_project-db-1 mysql -umovierental_user -pmovierental_pass movierental
-'''
+```
 
-5. Run sample queries
+4. Run sample queries
 
 Ex)
 
 Average spend per customer
+```
 SELECT ROUND(AVG(total_due), 2) AS avg_total_due_per_customer
 FROM (
     SELECT customer_id, 
@@ -66,16 +70,14 @@ FROM (
     FROM rentals
     GROUP BY customer_id
 ) AS subquery;
+```
 
-6. When finished, stop containers
+5. When finished, stop containers
 
-'''
+```
 docker compose down -v
-'''
+```
 
-Setup
-  1. Clone repository
-  2. 
 
 Technologies Used
 - Python
