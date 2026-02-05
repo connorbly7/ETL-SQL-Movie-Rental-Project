@@ -5,6 +5,7 @@ Overview:
 - This project demonstrates a complete ETL pipeline in Python that loads movie rental data into a MySQL database (movierental schema)
   and then analyzes it using SQL queries.
 - This project showcases data engineering, database design, and how to use SQL for analytics to find business insights
+- Containerized using Docker
 
 Data
 - Source: Created data myself based on a movie rental store.
@@ -18,7 +19,6 @@ Data
 ETL
 - Used Python in conjunction with NumPy, pandas, and SQLAlchemy to extract data from a csv file, transform and clean it, and load it into MySQL
 - During transformation, added additional columns to the data such as total_overdue_cost to improve datasets
-- Used a .env file to hide sensitive information
 
 Analysis
 - Used SQL to query the data for business insights
@@ -41,6 +41,7 @@ Prerequisites
 Setup
 
 1.Clone repository
+
 2. Build and run containers
 
 ```
@@ -62,15 +63,12 @@ docker exec -it movie_rental_project-db-1 mysql -umovierental_user -pmovierental
 
 Ex)
 
-Average spend per customer
+Total revenue, total rentals, and average rental length
 ```
-SELECT ROUND(AVG(total_due), 2) AS avg_total_due_per_customer
-FROM (
-    SELECT customer_id, 
-    SUM(rental_fee * datediff(rentals.return_date, rentals.rental_date) + total_overdue_fee) AS total_due
-    FROM rentals
-    GROUP BY customer_id
-) AS subquery;
+SELECT COUNT(rentals.rental_id) AS total_rentals,
+SUM((rentals.rental_fee * datediff(rentals.return_date, rentals.rental_date)) + rentals.total_overdue_fee) AS total_revenue,
+ROUND(AVG(datediff(rentals.return_date, rentals.rental_date)), 2) AS avg_rental_length
+FROM rentals;
 ```
 
 5. When finished, stop containers
